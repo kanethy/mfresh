@@ -1,32 +1,32 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+    <!-- 根组件:单页应用实际呈现出来的页面 -->
+    <!-- 具体加载流程:index.html->main.js->App.vue -->
+    <Header />
+    <!-- router-view:会根据URL地址中的路径变化,显示为不同的组件 -->
+    <!-- 路径和组件对应关系的配置:router/index.js中 -->
+    <router-view />
+    <Footer />
   </div>
 </template>
 
+<script>
+//组件的使用分3步:引入->注册->使用
+//1,引入
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
+export default {
+  //2,注册
+  // components{Header:Header}
+  components: { Header, Footer },
+};
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+/* 复制源代码的CSS文件夹,和image文件夹,到此文件的assets文件中,因为这些都是静态文件,所以放 assets中*/
+/* 引入css文件 */
+/* 在css里面引入其他的css文件,用@import */
+@import "./assets/css/common.css";
+@import "./assets/css/mycss.css";
 </style>

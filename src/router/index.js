@@ -1,23 +1,68 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Index from '../views/Index.vue'
+import Contact from '../views/Contact.vue'
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
+    path: '/contact',
+    name: 'Contact',
+    component: Contact,
+  },
+  {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'Index',
+    component: Index,
   },
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    // 懒加载写法,用到的时候再引入
+    component: () => import('../views/About.vue')
+  },
+  {
+    path: '/news',
+    name: 'News',
+    component: () => import('../views/News.vue')
+  },
+  {
+    //:代表是参数
+    path: '/news_detail/:nid',
+    name: 'NewsDetail',
+    component: () => import('../views/NewsDetail.vue')
+  },
+  {
+    path: '/product/:type',
+    name: 'Product',
+    component: () => import('../views/Product.vue')
+  },
+  {
+    //:代表是参数
+    path: '/product_detail/:pid',
+    name: 'ProductDetail',
+    component: () => import('../views/ProductDetail.vue'),
+    //此属性代表可以通过属性来接收路由参数
+    props:true,
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/Register.vue')
+  },
+   {
+    path: '/cart',
+    name: 'Cart',
+    component: () => import('../views/Cart.vue')
+  },
+ 
 ]
 
 const router = new VueRouter({
